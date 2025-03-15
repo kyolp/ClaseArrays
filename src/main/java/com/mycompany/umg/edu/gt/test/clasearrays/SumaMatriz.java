@@ -4,7 +4,14 @@
  */
 package com.mycompany.umg.edu.gt.test.clasearrays;
 
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class SumaMatriz {
+    private static final Logger logger = LogManager.getLogger(SumaMatriz.class);
+
     public static int sumaTotal(int[][] mat) {
         int suma = 0;
         for (int[] fila : mat) {
@@ -12,6 +19,7 @@ public class SumaMatriz {
                 suma += valor;
             }
         }
+        logger.info("Suma parcial calculada: {}", suma);
         return suma;
     }
 
@@ -21,13 +29,13 @@ public class SumaMatriz {
             {4, 5, 6},
             {7, 8, 9}
         };
-        
+
         int[][] mat2 = {
             {10, 20},
             {30, 40}
         };
 
-        System.out.println("Suma total (Ejemplo 1): " + sumaTotal(mat1)); 
-        System.out.println("Suma total (Ejemplo 2): " + sumaTotal(mat2)); 
+        logger.info("Suma total (Ejemplo 1): {}", sumaTotal(mat1));
+        logger.info("Suma total (Ejemplo 2): {}", sumaTotal(mat2));
     }
 }

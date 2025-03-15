@@ -7,8 +7,12 @@ package com.mycompany.umg.edu.gt.test.clasearrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import java.util.Arrays;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 class MatrizDiagonalesTest {
+    private static final Logger logger = LogManager.getLogger(MatrizDiagonalesTest.class);
 
     @Test
     void testEjemplo1() {
@@ -22,7 +26,19 @@ class MatrizDiagonalesTest {
             {1, 2, 2, 2},
             {1, 2, 3, 3}
         };
-        assertArrayEquals(esperado, MatrizDiagonales.ordenarDiagonales(mat));
+
+        logger.info("TestEjemplo1 - Matriz original:");
+        logMatriz(mat);
+
+        int[][] obtenido = MatrizDiagonales.ordenarDiagonales(mat);
+
+        logger.info("TestEjemplo1 - Matriz obtenida:");
+        logMatriz(obtenido);
+
+        logger.info("TestEjemplo1 - Matriz esperada:");
+        logMatriz(esperado);
+
+        assertArrayEquals(esperado, obtenido);
     }
 
     @Test
@@ -41,6 +57,24 @@ class MatrizDiagonalesTest {
             {22, 27, 31, 36, 50, 66},
             {84, 28, 75, 33, 55, 68}
         };
-        assertArrayEquals(esperado, MatrizDiagonales.ordenarDiagonales(mat));
+
+        logger.info("TestEjemplo2 - Matriz original:");
+        logMatriz(mat);
+
+        int[][] obtenido = MatrizDiagonales.ordenarDiagonales(mat);
+
+        logger.info("TestEjemplo2 - Matriz obtenida:");
+        logMatriz(obtenido);
+
+        logger.info("TestEjemplo2 - Matriz esperada:");
+        logMatriz(esperado);
+
+        assertArrayEquals(esperado, obtenido);
+    }
+
+    private void logMatriz(int[][] matriz) {
+        for (int[] fila : matriz) {
+            logger.info(Arrays.toString(fila));
+        }
     }
 }

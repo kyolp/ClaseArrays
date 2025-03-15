@@ -8,8 +8,14 @@ package com.mycompany.umg.edu.gt.test.clasearrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import java.util.Arrays;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 class SumaMatrizTest {
+    private static final Logger logger = LogManager.getLogger(SumaMatrizTest.class);
 
     @Test
     void testEjemplo1() {
@@ -18,7 +24,14 @@ class SumaMatrizTest {
             {4, 5, 6},
             {7, 8, 9}
         };
-        assertEquals(45, SumaMatriz.sumaTotal(mat));
+        int resultadoEsperado = 45;
+        int resultadoObtenido = SumaMatriz.sumaTotal(mat);
+
+        logger.info("TestEjemplo1 - Matriz:");
+        logMatriz(mat);
+        logger.info("Resultado esperado: {}, Resultado obtenido: {}", resultadoEsperado, resultadoObtenido);
+
+        assertEquals(resultadoEsperado, resultadoObtenido);
     }
 
     @Test
@@ -27,7 +40,14 @@ class SumaMatrizTest {
             {10, 20},
             {30, 40}
         };
-        assertEquals(100, SumaMatriz.sumaTotal(mat));
+        int resultadoEsperado = 100;
+        int resultadoObtenido = SumaMatriz.sumaTotal(mat);
+
+        logger.info("TestEjemplo2 - Matriz:");
+        logMatriz(mat);
+        logger.info("Resultado esperado: {}, Resultado obtenido: {}", resultadoEsperado, resultadoObtenido);
+
+        assertEquals(resultadoEsperado, resultadoObtenido);
     }
 
     @Test
@@ -35,6 +55,19 @@ class SumaMatrizTest {
         int[][] mat = {
             {5}
         };
-        assertEquals(5, SumaMatriz.sumaTotal(mat));
+        int resultadoEsperado = 5;
+        int resultadoObtenido = SumaMatriz.sumaTotal(mat);
+
+        logger.info("TestMatrizUnElemento - Matriz:");
+        logMatriz(mat);
+        logger.info("Resultado esperado: {}, Resultado obtenido: {}", resultadoEsperado, resultadoObtenido);
+
+        assertEquals(resultadoEsperado, resultadoObtenido);
+    }
+
+    private void logMatriz(int[][] matriz) {
+        for (int[] fila : matriz) {
+            logger.info(Arrays.toString(fila));
+        }
     }
 }
